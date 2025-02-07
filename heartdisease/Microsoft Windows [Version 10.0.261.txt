@@ -1,0 +1,242 @@
+Microsoft Windows [Version 10.0.26100.3037]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\bamne>mongod --version
+db version v7.0.14
+Build Info: {
+    "version": "7.0.14",
+    "gitVersion": "ce59cfc6a3c5e5c067dca0d30697edd68d4f5188",
+    "modules": [],
+    "allocator": "tcmalloc",
+    "environment": {
+        "distmod": "windows",
+        "distarch": "x86_64",
+        "target_arch": "x86_64"
+    }
+}
+
+C:\Users\bamne>mongosh
+Current Mongosh Log ID: 67a18d239c679c852ccb0ce1
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.3.8
+Using MongoDB:          8.0.4
+Using Mongosh:          2.3.8
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2025-02-04T09:09:30.184+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> show dbs
+admin   40.00 KiB
+config  12.00 KiB
+local   40.00 KiB
+test> use Rohit
+switched to db Rohit
+Rohit> db.data.use library
+Uncaught:
+SyntaxError: Missing semicolon. (1:11)
+
+> 1 | db.data.use library
+    |            ^
+  2 |
+
+Rohit> use library
+switched to db library
+library> db.createCollection
+[Function: createCollection] AsyncFunction {
+  apiVersions: [ 1, Infinity ],
+  returnsPromise: true,
+  serverVersions: [ '0.0.0', '999.999.999' ],
+  topologies: [ 'ReplSet', 'Sharded', 'LoadBalanced', 'Standalone' ],
+  returnType: { type: 'unknown', attributes: {} },
+  deprecated: false,
+  platforms: [ 'Compass', 'Browser', 'CLI' ],
+  isDirectShellCommand: false,
+  acceptsRawInput: false,
+  shellCommandCompleter: undefined,
+  help: [Function (anonymous)] Help
+}
+library> db.createCollection('book')
+{ ok: 1 }
+library> show Collections
+MongoshInvalidInputError: [COMMON-10001] 'Collections' is not a valid argument for "show".
+library> show collections
+book
+library> db.book.insertOne({'name':'mongodb','author':{'firstname':'Rohit','lastname':'Bamne'}})
+{
+  acknowledged: true,
+  insertedId: ObjectId('67a18ee59c679c852ccb0ce2')
+}
+library> db.book.find()
+[
+  {
+    _id: ObjectId('67a18ee59c679c852ccb0ce2'),
+    name: 'mongodb',
+    author: { firstname: 'Rohit', lastname: 'Bamne' }
+  }
+]
+library> db.book.updateOne({'name';',mongodb'},{$set : {'author.firstname':'Minakshi','author.lastname':'Sharma'}})
+Uncaught:
+SyntaxError: Unexpected token (1:25)
+
+> 1 | db.book.updateOne({'name';',mongodb'},{$set : {'author.firstname':'Minakshi','author.lastname':'Sharma'}})
+    |                          ^
+  2 |
+
+library>  db.book.updateOne({'name':',mongodb'},{$set : {'author.firstname':'Minakshi','author.lastname':'Sharma'}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+library> db.book.find()
+[
+  {
+    _id: ObjectId('67a18ee59c679c852ccb0ce2'),
+    name: 'mongodb',
+    author: { firstname: 'Rohit', lastname: 'Bamne' }
+  }
+]
+library>  db.book.updateOne({'name':'mongodb'},{$set : {'author.firstname':'Minakshi','author.lastname':'Sharma'}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+library>
+
+library> db.book.find()
+[
+  {
+    _id: ObjectId('67a18ee59c679c852ccb0ce2'),
+    name: 'mongodb',
+    author: { firstname: 'Minakshi', lastname: 'Sharma' }
+  }
+]
+library> db.createCollection('food')
+{ ok: 1 }
+library> db.book.insertOne({'name':'color','type':{'red':'apple','yellow':'mango','green':'guava'}})
+{
+  acknowledged: true,
+  insertedId: ObjectId('67a1928a9c679c852ccb0ce3')
+}
+library> db.food.find()
+
+library> show Collections
+MongoshInvalidInputError: [COMMON-10001] 'Collections' is not a valid argument for "show".
+library> show collections
+book
+food
+library> use food
+switched to db food
+food> db.food.find()
+
+food> db.book.find()
+
+food> db.food.insertOne({'name':'color','type':{'red':'apple','yellow':'mango','green':'guava'}})
+{
+  acknowledged: true,
+  insertedId: ObjectId('67a193609c679c852ccb0ce4')
+}
+food> db.food.find()
+[
+  {
+    _id: ObjectId('67a193609c679c852ccb0ce4'),
+    name: 'color',
+    type: { red: 'apple', yellow: 'mango', green: 'guava' }
+  }
+]
+food> db.food.insertMany([{'fruitname':'banana'},{'fruitname':'mango'},{'fruitname':'apple'}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('67a194239c679c852ccb0ce5'),
+    '1': ObjectId('67a194239c679c852ccb0ce6'),
+    '2': ObjectId('67a194239c679c852ccb0ce7')
+  }
+}
+food> db.food.find()
+[
+  {
+    _id: ObjectId('67a193609c679c852ccb0ce4'),
+    name: 'color',
+    type: { red: 'apple', yellow: 'mango', green: 'guava' }
+  },
+  { _id: ObjectId('67a194239c679c852ccb0ce5'), fruitname: 'banana' },
+  { _id: ObjectId('67a194239c679c852ccb0ce6'), fruitname: 'mango' },
+  { _id: ObjectId('67a194239c679c852ccb0ce7'), fruitname: 'apple' }
+]
+food> db.createCollection('fruit')
+{ ok: 1 }
+food> sho collections
+Uncaught:
+SyntaxError: Missing semicolon. (1:3)
+
+> 1 | sho collections
+    |    ^
+  2 |
+
+food> show collections
+food
+fruit
+food> use fruit
+switched to db fruit
+fruit> db.fruit.insertMany([{'fruitName:'Mango'},{'fruitname':'apple'},{'fruitname':'banana'}])
+Uncaught:
+SyntaxError: Unexpected token (1:34)
+
+> 1 | db.fruit.insertMany([{'fruitName:'Mango'},{'fruitname':'apple'},{'fruitname':'banana'}])
+    |                                   ^
+  2 |
+
+fruit> db.fruit.insertMany([{'fruitName:'mango'},{'fruitname':'apple'},{'fruitname':'banana'}])
+Uncaught:
+SyntaxError: Unexpected token (1:34)
+
+> 1 | db.fruit.insertMany([{'fruitName:'mango'},{'fruitname':'apple'},{'fruitname':'banana'}])
+    |                                   ^
+  2 |
+
+fruit> db.fruit.insertMany([{'fruitname':'Mango'},{'fruitname':'apple'},{'fruitname':'banana'}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('67a195289c679c852ccb0ce8'),
+    '1': ObjectId('67a195289c679c852ccb0ce9'),
+    '2': ObjectId('67a195289c679c852ccb0cea')
+  }
+}
+fruit> use book
+switched to db book
+book> show collections
+
+book> show collections
+
+book> db.fruit.drop()
+true
+book> show dbs
+admin     40.00 KiB
+config   108.00 KiB
+food      80.00 KiB
+fruit     40.00 KiB
+library   80.00 KiB
+local     40.00 KiB
+book> db.createCollection('data')
+{ ok: 1 }
+book> use data
+switched to db data
+data> db.student.insertMany([{'name':'Minakshi','age':25},{'name':'vivek','age':21},{'name':'age':22}])
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:91)
+
+> 1 | db.student.insertMany([{'name':'Minakshi','age':25},{'name':'vivek','age':21},{'name':'age':22}])
+    |                                                                                            ^
+  2 |
+
+data>  db.student.insertMany([{'name':'Minakshi','age':25 },{'name':'vivek','age':21},{'name':'age':22 }])

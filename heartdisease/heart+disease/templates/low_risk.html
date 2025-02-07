@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Low Risk</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> 
+</head>
+<body>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4; 
+        }
+
+        .container {
+            display: flex;
+            max-width: 800px; 
+        }
+
+        .chart-container {
+            flex: 0 0 40%; 
+            margin-right: 20px; 
+        }
+
+        .content-container {
+            flex: 1; 
+        }
+
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #content {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9; 
+        }
+    </style>
+
+    <div class="container">
+        <div class="chart-container">
+            <h1>Heart Disease Risk Assessment</h1>
+            <h2>{{ prediction_text }}</h2>
+            <img src="data:image/png;base64,{{ plot_url }}" height="450" width="450" alt="Risk Percentage Chart">
+        </div>
+        
+        <div id="content" class="content-container">
+            <h3>You’re doing a great job maintaining your heart health! <br>
+                Continue with your healthy habits to keep your risk low.<br>
+                Be Happy and Great!!</h3><br>
+            <p>Tips:<br>
+                Stay Active:<br>
+                Try to get moving for at least 30 minutes most days.<br>
+                walking, biking, or swimming are great!<br>
+                Don’t sit too long—take breaks to stretch or walk around now and then.<br>
+                <br>
+                Eat Smart:<br>
+                Fill your plate with fruits, veggies, whole grains, and lean proteins.<br>
+                Cut back on junk food, sugary drinks, and too much salt.<br>
+                <br>
+                Manage Stress:<br>
+                Find ways to relax, like deep breathing or spending time with loved ones.<br>
+                Make sure you’re getting enough sleep—7-9 hours a night helps you recharge.<br>
+                <br>
+                Keep an Eye on Your Health:<br>
+                Get regular check-ups to monitor your blood pressure and cholesterol.<br>
+                Drink water throughout the day to stay hydrated and support your heart.<br>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

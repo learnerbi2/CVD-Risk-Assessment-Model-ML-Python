@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>High Risk</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> 
+</head>
+<body>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4; 
+        }
+
+        .container {
+            display: flex;
+            max-width: 800px; 
+        }
+
+        .chart-container {
+            flex: 0 0 40%; 
+            margin-right: 20px; 
+        }
+
+        .content-container {
+            flex: 1; 
+        }
+
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #content {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9; 
+        }
+    </style>
+
+    <div class="container">
+        <div class="chart-container">
+            <h1>Heart Disease Risk Assessment</h1>
+            <h2>{{ prediction_text }}</h2>
+            <img src="data:image/png;base64,{{ plot_url }}" height="450" width="450" alt="Risk Percentage Chart">
+        </div>
+        <div id="content" class="content-container">
+            <h3> "Your risk for cardiovascular disease is higher, but the good news is<br>
+                that there are many steps you can take to improve your health.<br> 
+                You are Important to us, so Take Care of your Heart."</h3><br>
+            <p>Tips:<br>
+
+                Get Moving (with Care):<br>
+                Aim for 30 minutes of activity most days. If you're not sure where to start,<br>
+                ask your doctor to help you come up with a plan that feels right for you.<br>
+                Find ways to relax your mind and body—stress management is key, so things<br> 
+                like meditation or just getting out in nature can help.<br>
+                
+                Make Healthier Food Choices:<br>
+                Focus on foods that are good for your heart, like vegetables, fruits, whole grains, <br>
+                and healthy fats (like olive oil or nuts).<br>
+                Cut back on processed foods, fried foods, and sugary snacks.<br>
+                If you drink alcohol, try to keep it in moderation—or think about cutting back.<br>
+                
+                Get the Right Medical Help:<br>
+                Work with your doctor to manage any conditions like high blood pressure or high cholesterol. <br>
+                Follow their advice about medications or other treatments.<br>
+                Don’t skip your health check-ups—regular visits can help catch any issues early. <br>
+                Quit Smoking <br>
+                If you smoke, quitting is one of the most important steps you can take for your heart.<br>
+                 Ask for help if you need it.<br>
+                there are plenty of resources to support you.<br>
+                Check your blood pressure and cholesterol regularly, and follow your doctor’s advice on what’s best for you.<br>
+                
+            </p>
+        </div>
+    </div>
+</body>
+</html>

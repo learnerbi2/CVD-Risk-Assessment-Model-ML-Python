@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Prediction API</title>
+<link rel="stylesheet" href="{{ url_for( 'static',filename= 'stylePP.css')}}" >
+</head>
+<body>
+<h1>Heart Disease Risk Assessment</h1> 
+<div>
+<form action ="{{url_for('predict')}}" method = "post">
+    <label for="age">What is your age? </label><br>
+    <input type="number" name="age" placeholder="Enter Age" min="0" max="120" required="required"/><br>
+
+   
+    <select id="gender" name="gender"> 
+        <option value="0">Female</option>
+        <option value="1">Male</option>
+        <option value="Other">Other</option>
+    </select><br>
+
+    <label for="height">What is your height (in meters)?</label><br>
+    <input type="number" name="height" step="0.01" placeholder="Enter Height" min="0.5" max="3.0" required="required"/><br> 
+
+    <label for="weight">What is your weight (in kilograms)?</label><br>
+    <input type="number" name="weight" step="0.1" placeholder="Enter Weight" min="30" max="250" required="required"/><br> 
+
+    <label for="smoke">Do you currently smoke cigarettes, e-cigarettes, or use tobacco products?</label><br>
+    <select id="smoke" name="smoke">
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+    </select><br>
+
+    <label for="exercise">On average, how many days a week do you engage in at least 30 minutes of moderate-intensity physical activity (e.g., brisk walking, cycling)? (0-7 days)</label><br>
+    <input type="number" name="exercise" placeholder="Enter days (0-7)" min="0" max="7" required="required"/><br>
+
+    <label for="alcohol">How often do you consume alcoholic beverages?</label><br>
+    <select id="alcohol" name="alcohol">
+        <option value="0">Never</option>
+        <option value="1">Rarely</option>
+        <option value="2">Occasionally</option>
+        <option value="3">Frequently</option>
+        <option value="4">Daily</option>
+    </select><br>
+
+    <label for="diet">How would you describe your typical diet?</label><br>
+    <select id="diet" name="diet">
+        <option value="Healthy">Healthy</option>
+        <option value="Mostly Healthy">Mostly Healthy</option>
+        <option value="Mixed">Mixed</option>
+        <option value="Unhealthy">Unhealthy</option>
+        <option value="Mostly Unhealthy">Mostly Unhealthy</option>
+    </select><br>
+
+    <label for="high_blood_pressure">Have you ever been diagnosed with high blood pressure?</label><br>
+    <select id="high_blood_pressure" name="high_blood_pressure">
+        <option value="130/80">Yes</option>
+        <option value="120/80">No</option>
+        <option value="0">Don't Know</option>
+    </select><br>
+
+    <label for="high_cholesterol">Have you ever been diagnosed with high cholesterol?</label><br>
+    <select id="high_cholesterol" name="high_cholesterol">
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+        <option value="Don't Know">Don't Know</option>
+    </select><br>
+
+    <label for="diabetes">Have you ever been diagnosed with diabetes or pre-diabetes?</label><br>
+    <select id="diabetes" name="diabetes">
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+        <option value="Don't Know">Don't Know</option>
+    </select><br>
+
+    <label for="heart_conditions">Has a doctor ever told you you have any heart conditions (e.g., heart murmur, arrhythmia, coronary artery disease)?</label><br>
+    <select id="heart_conditions" name="heart_conditions">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+        <option value="Don't Know">Don't Know</option>
+    </select><br>
+
+    <label for="family_history">Do you have a family history of heart disease (in a parent, sibling, or grandparent)?</label><br>
+    <select id="family_history" name="family_history">
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+        <option value="Don't Know">Don't Know</option>
+    </select><br>
+
+    <button type="submit">Submit</button>
+</form>
+</div>
+</body>
+</html>
